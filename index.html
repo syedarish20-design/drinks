@@ -29,6 +29,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,40px);lin
 .token{font-family:var(--display);font-weight:800;font-size:28px;line-height:1.15;color:var(--gold);text-wrap:balance}
 .token.done{color:var(--ok)}
 .sub{font-size:15px;color:var(--fg);margin:0}
+.sig{font-family:var(--display);font-weight:800;font-size:20px;color:var(--gold)}
 .badge{align-self:center;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .badge.ready{background:var(--goldbg);color:var(--gold)} .badge.done{background:var(--okbg);color:var(--ok)}
 @media (prefers-reduced-motion:no-preference){.stub{animation:in .35s ease-out both}@keyframes in{from{transform:translateY(8px)}to{transform:none}}}
@@ -36,7 +37,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,40px);lin
 </head>
 <body>
 <main id="app"></main>
-<script id="state" type="application/json">{"guests":[{"t":"p-3r88jfx3","name":"Demo Guest","collected":false},{"t":"p-ummaw2jp","name":"Rishab Kanwal","collected":false},{"t":"p-wskl3doo","name":"Prateek Arora","collected":false},{"t":"p-o20xdq59","name":"Anna Teslenko","collected":false},{"t":"p-2oexjjcf","name":"Sibel Merlet","collected":false},{"t":"p-d7dw8ax4","name":"Harsh Malik","collected":false},{"t":"p-vg14n89x","name":"Jaina Abdul Mansour","collected":false},{"t":"p-ystagkga","name":"Sagar Rathi","collected":false},{"t":"p-el7phtod","name":"Huzefa Chunawala","collected":false},{"t":"p-zkufj2o5","name":"Amar","collected":true}]}</script>
+<script id="state" type="application/json">{"guests":[{"t":"p-3r88jfx3","name":"Demo Guest","collected":false},{"t":"p-ummaw2jp","name":"Rishab Kanwal","collected":false},{"t":"p-wskl3doo","name":"Prateek Arora","collected":false},{"t":"p-o20xdq59","name":"Anna Teslenko","collected":false},{"t":"p-2oexjjcf","name":"Sibel Merlet","collected":false},{"t":"p-d7dw8ax4","name":"Harsh Malik","collected":false},{"t":"p-vg14n89x","name":"Jaina Abdul Mansour","collected":false},{"t":"p-ystagkga","name":"Sagar Rathi","collected":false},{"t":"p-el7phtod","name":"Huzefa Chunawala","collected":false},{"t":"p-zkufj2o5","name":"Amar","collected":true},{"t":"d-blcsccrk","name":"DJ A/TAG","dj":true},{"t":"d-jtyracb0","name":"DJ LAUTASTIC","dj":true},{"t":"d-xmza830z","name":"DJ LEZCANO","dj":true},{"t":"d-33d2peyh","name":"DJ LUCHO","dj":true},{"t":"d-hwwlki84","name":"DJ DYLAN GOUGH","dj":true},{"t":"d-11gpuc5c","name":"DJ ANNA","dj":true},{"t":"d-qbwa8qpb","name":"DJ DUNGEON MAGISTER","dj":true}]}</script>
 <script>
 (function(){
   const state = JSON.parse(document.getElementById('state').textContent);
@@ -48,6 +49,13 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,40px);lin
     s.append(el('div', 'eyebrow', "Arish's Birthday"));
     if (!g){
       s.append(el('h1', '', 'Welcome!'), el('p', 'msg', 'Scan the QR code on your pass to see your drink.'));
+    } else if (g.dj){
+      s.append(el('h1', '', 'Hey ' + g.name + '!'),
+        el('div', 'tear'),
+        el('div', 'token', "You're on the decks at 9HRS tonight"),
+        el('p', 'msg', "Thank you for bringing the music and the energy. You're the reason this party comes alive. I'm so grateful you're here. Now go make some noise."),
+        el('p', 'sub sig', '– Arish'),
+        el('span', 'badge ready', 'DJ pass'));
     } else if (!g.collected){
       const first = g.name.split(' ')[0];
       s.append(el('h1', '', 'Hey ' + first + ', welcome!'),
